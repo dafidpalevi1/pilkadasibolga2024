@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polling Kepala Daerah</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Polling Kepala Daerah</h1>
+        <nav>
+            <div class="toggle-menu">&#9776;</div>
+            <ul>
+                <li><a href="#" id="pollBtn" onclick="showPoll()">Polling</a></li>
+                <li><a href="#" id="resultBtn" onclick="showResults()">Hasil Polling</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="content" id="pollContent">
+        <h2>Pilih Kepala Daerah Anda</h2>
+        <div id="poll">
+            <div class="candidate" onclick="vote(1)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasiSUCkshCiwgrJ1pyT5bLwxLQURWETmFP6RcGOzbyPSGsyvTORJ3VNbOoMnoTvI70KI&usqp=CAU" alt="Kandidat 1">
+                <p>Kandidat 1</p>
+            </div>
+            <div class="candidate" onclick="vote(2)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasiSUCkshCiwgrJ1pyT5bLwxLQURWETmFP6RcGOzbyPSGsyvTORJ3VNbOoMnoTvI70KI&usqp=CAU" alt="Kandidat 2">
+                <p>Kandidat 2</p>
+            </div>
+            <div class="candidate" onclick="vote(3)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasiSUCkshCiwgrJ1pyT5bLwxLQURWETmFP6RcGOzbyPSGsyvTORJ3VNbOoMnoTvI70KI&usqp=CAU" alt="Kandidat 3">
+                <p>Kandidat 3</p>
+            </div>
+        </div>
+    </div>
+    <div class="content" id="resultContent" style="display:none;">
+        <h2>Hasil Polling</h2>
+        <canvas id="pollChart"></canvas>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Polling Kepala Daerah</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="scripts.js"></script>
+</body>
+</html>
