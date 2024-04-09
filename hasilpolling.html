@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasil Polling</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Hasil Polling</h1>
+        <nav>
+            <div class="toggle-menu">&#9776;</div>
+            <ul>
+                <li><a href="index.html" id="pollBtn" onclick="showPoll('poll')">Polling</a></li>
+                <li><a href="hasilpolling.html" id="resultBtn" onclick="showPoll('result')">Hasil Polling</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="content" id="resultContent">
+        <h2>Hasil Polling</h2>
+        <h3>Kepala Daerah</h3>
+        <canvas id="pollChartHead"></canvas>
+        <hr> <!-- Pembatas antara grafik Kepala Daerah dan Wakil Kepala Daerah -->
+        <h3>Wakil Kepala Daerah</h3>
+        <canvas id="pollChartVP"></canvas>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Polling Kepala Daerah</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="scripts.js"></script>
+<script>
+    let chartHead;
+    let chartVP;
+    let headVotes = [0, 0, 0]; // Menyimpan jumlah suara untuk Kepala Daerah
+    let vpVotes = [0, 0, 0]; // Menyimpan jumlah suara untuk Wakil Kepala Daerah
+
+    function showPoll(section) {
+        if (section === 'poll') {
+            window.location.href = "index.html";
+        } else if (section === 'result') {
+            document.getElementById('pollContent').style.display = 'none';
+            document.getElementById('resultContent').style.display = 'block';
+            showResults();
+        }
+    }
+
+    function vote(candidate, position) {
+        const userIP = getUserIP(); // Mendapatkan IP pengguna
+        
+        // Memeriksa apakah pengguna telah memberikan suara dari IP yang sama sebelumnya
+        if (votedIPs.includes(userIP)) {
+            alert("Anda sudah memberikan suara untuk Kepala Daerah dan Wakil Kepala Daerah.");
+            return;
+        }
+        
+        // Jika belum memberikan suara, tambahkan IP ke daftar votedIPs
+        votedIPs.push(userIP);
+
+        if (position === 'head') {
+            headVotes[candidate - 1]++; // Menambah jumlah suara untuk Kepala Daerah
+        } else if (position === 'vp') {
+            vpVotes[candidate - 1]++; // Menambah jumlah suara untuk Wakil Kepala Daerah
+        }
+        showResults();
+    }
+
+    function showResults() {
+        if (chartHead) {
+            chartHead.destroy();
+        }
+        if (chartVP) {
+            chartVP.destroy();
+        }
+
+        let candidateNames = ['Dafid SEO', 'Rezha Pohan', 'Ari Andika']; // Nama-nama kandidat
+
+        let ctxHead = document.getElementById('pollChartHead').getContext('2d');
+        let ctxVP = document.getElementById('pollChartVP').getContext('2d');
+
+        chartHead = new Chart(ctxHead, {
+            type: 'bar',
+            data: {
+                labels: candidateNames,
+                datasets: [{
+                    label: 'Kepala Daerah',
+                    data: headVotes,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Hasil Polling Kepala Daerah'
+                    }
+                }
+            }
+        });
+
+        chartVP = new Chart(ctxVP, {
+            type: 'bar',
+            data: {
+                labels: candidateNames,
+                datasets: [{
+                    label: 'Wakil Kepala Daerah',
+                    data: vpVotes,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Hasil Polling Wakil Kepala Daerah'
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

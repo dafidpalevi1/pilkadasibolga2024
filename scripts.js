@@ -1,76 +1,27 @@
-let votes = [0, 0, 0];
-let chart;
-
-// Cek apakah pengguna telah memberikan polling sebelumnya
-if (localStorage.getItem('hasVoted')) {
-    showResults(); // Jika sudah memberikan polling, tampilkan hasil polling
-} else {
-    showPoll(); // Jika belum memberikan polling, tampilkan form polling
-}
-
-function vote(candidate) {
-    // Cek apakah pengguna telah memberikan polling sebelumnya
-    if (!localStorage.getItem('hasVoted')) {
-        votes[candidate - 1]++;
-        showResults();
-        localStorage.setItem('hasVoted', true); // Set informasi bahwa pengguna telah memberikan polling
-    } else {
-        alert('Anda sudah memberikan polling.');
-    }
-}
-
-function showPoll() {
-    document.getElementById('pollContent').style.display = 'block';
-    document.getElementById('resultContent').style.display = 'none';
-}
-
-function showResults() {
-    document.getElementById('pollContent').style.display = 'none';
-    document.getElementById('resultContent').style.display = 'block';
+function vote(candidate, position) {
+    const userIP = getUserIP(); // Mendapatkan IP pengguna
     
-    if (chart) {
-        chart.destroy();
+    // Memeriksa apakah pengguna telah memberikan suara dari IP yang sama sebelumnya
+    if (votedIPs.includes(userIP)) {
+        alert("Anda sudah memberikan suara untuk Kepala Daerah dan Wakil Kepala Daerah.");
+        return;
     }
     
-    let totalVotes = votes.reduce((a, b) => a + b, 0);
-    let percentages = votes.map(vote => ((vote / totalVotes) * 100).toFixed(2));
-    
-    let ctx = document.getElementById('pollChart').getContext('2d');
-    chart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Kandidat 1', 'Kandidat 2', 'Kandidat 3'],
-            datasets: [{
-                label: 'Jumlah Suara',
-                data: percentages,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return context.label + ': ' + context.raw + '%';
-                        }
-                    }
-                }
-            }
-        }
-    });
+    // Jika belum memberikan suara, tambahkan IP ke daftar votedIPs
+    votedIPs.push(userIP);
+
+    if (position === 'head') {
+        headVotes[candidate - 1]++; // Menambah jumlah suara untuk Kepala Daerah
+    } else if (position === 'vp') {
+        vpVotes[candidate - 1]++; // Menambah jumlah suara untuk Wakil Kepala Daerah
+    }
+    showResults();
 }
+
+
+
+// Simpan hasil vote kepala daerah ke dalam localStorage
+localStorage.setItem('headVotes', JSON.stringify(headVotes));
+
+// Simpan hasil vote wakil kepala daerah ke dalam localStorage
+localStorage.setItem('vpVotes', JSON.stringify(vpVotes));

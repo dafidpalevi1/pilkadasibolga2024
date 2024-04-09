@@ -13,8 +13,8 @@
         <nav>
             <div class="toggle-menu">&#9776;</div>
             <ul>
-                <li><a href="#" id="pollBtn" onclick="showPoll()">Polling</a></li>
-                <li><a href="#" id="resultBtn" onclick="showResults()">Hasil Polling</a></li>
+                <li><a href="index.html" id="pollBtn" onclick="showPoll('poll')">Polling</a></li>
+                <li><a href="hasilpolling.html" id="resultBtn" onclick="showPoll('result')">Hasil Polling</a></li>
             </ul>
         </nav>
     </div>
@@ -24,23 +24,41 @@
     <div class="content" id="pollContent">
         <h2>Pilih Kepala Daerah Anda</h2>
         <div id="poll">
-            <div class="candidate" onclick="vote(1)">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasiSUCkshCiwgrJ1pyT5bLwxLQURWETmFP6RcGOzbyPSGsyvTORJ3VNbOoMnoTvI70KI&usqp=CAU" alt="Kandidat 1">
-                <p>Kandidat 1</p>
+            <div class="candidate" onclick="vote(1, 'head')">
+                <img src="https://scontent.fkno3-1.fna.fbcdn.net/v/t39.30808-6/434363954_7163097250476995_4316408573422938075_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHrWms8OI_6PJqZw-OvsxRkx4jRhdxthALHiNGF3G2EAnhAdmE3_o7JDog6F7gC3byZboaomI-focbp3p_LebI4&_nc_ohc=_avz366Uc38Ab4nk7iC&_nc_ht=scontent.fkno3-1.fna&oh=00_AfB7cEYNJEqucCVwN9kGOSlQV7nsgVYO6BJ9yxjMxFLFUA&oe=661A349F" alt="Kandidat 1">
+                <p>Dafid SEO (Kepala Daerah)</p>
+                <button class="vote-button" onclick="vote(1, 'head')">Vote</button> <!-- Tombol voting -->
             </div>
-            <div class="candidate" onclick="vote(2)">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasiSUCkshCiwgrJ1pyT5bLwxLQURWETmFP6RcGOzbyPSGsyvTORJ3VNbOoMnoTvI70KI&usqp=CAU" alt="Kandidat 2">
-                <p>Kandidat 2</p>
+            <div class="candidate" onclick="vote(2, 'head')">
+                <img src="https://scontent.fkno3-1.fna.fbcdn.net/v/t1.6435-9/130833407_3886214138068577_4363391758936819760_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEZw6aCyeUn0dfwmrXQHIWlH1VOjdBKPI4fVU6N0Eo8jrPJ0waz2opWL2D0KDSeva5P2BYNHjukYjSY34k2wgk0&_nc_ohc=TOI9CyP6ODoAb4sA7tl&_nc_ht=scontent.fkno3-1.fna&oh=00_AfDT1O_7Z6UYJFgHPVIl82K4glJKd-G2eS_4Ea7AJJsHEw&oe=663BBEC8" alt="Kandidat 2">
+                <p>Rezha Pohan (Kepala Daerah)</p>
+                <button class="vote-button" onclick="vote(2, 'head')">Vote</button> <!-- Tombol voting -->
             </div>
-            <div class="candidate" onclick="vote(3)">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasiSUCkshCiwgrJ1pyT5bLwxLQURWETmFP6RcGOzbyPSGsyvTORJ3VNbOoMnoTvI70KI&usqp=CAU" alt="Kandidat 3">
-                <p>Kandidat 3</p>
+            <div class="candidate" onclick="vote(3, 'head')">
+                <img src="https://scontent.fkno3-1.fna.fbcdn.net/v/t1.6435-9/28872505_1676330952434144_1242891027824508928_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHfd_jd3eXsS6Jv7F2D2cWDjFRAgf0l4qaMVECB_SXipv9b0yZJeVmAH-cr2Risv5rDtyp4dV8eDLYeOT7SzM57&_nc_ohc=bPWEP3o7s-kAb7WRRwe&_nc_ht=scontent.fkno3-1.fna&oh=00_AfCjKI2JJjynDRin0pjhhLxNQBmMYFYREFvz-JV1FITAyA&oe=663BD0D7" alt="Kandidat 3">
+                <p>Ari Andika (Kepala Daerah)</p>
+                <button class="vote-button" onclick="vote(3, 'head')">Vote</button> <!-- Tombol voting -->
             </div>
         </div>
-    </div>
-    <div class="content" id="resultContent" style="display:none;">
-        <h2>Hasil Polling</h2>
-        <canvas id="pollChart"></canvas>
+        <hr> <!-- Pembatas antara Kepala Daerah dan Wakil Kepala Daerah -->
+        <div id="vpPoll">
+            <h2>Pilih Wakil Kepala Daerah Anda</h2>
+            <div class="candidate" onclick="vote(1, 'vp')">
+                <img src="https://scontent.fkno3-1.fna.fbcdn.net/v/t39.30808-6/218240003_5934933066548012_8043227671106442136_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGOUvJm096JvhgF-b09_cCqpiI90bjZELemIj3RuNkQtxHH1h-37rIuMHkAVDIyz1DDDOOtj1wnHd_0-9d4saAV&_nc_ohc=eW58ZstP5RwAb5ZfSZd&_nc_ht=scontent.fkno3-1.fna&oh=00_AfBl17PwewnVqOuF3UrNA0q4VsdokHbefbEAjVtAgk-jQQ&oe=661A3DC2" alt="Wakil Kandidat 1">
+                <p>Pandi Bachdim (Wakil Kepala Daerah)</p>
+                <button class="vote-button" onclick="vote(1, 'vp')">Vote</button> <!-- Tombol voting -->
+            </div>
+            <div class="candidate" onclick="vote(2, 'vp')">
+                <img src="https://scontent.fkno3-1.fna.fbcdn.net/v/t1.6435-9/35265841_142860146581848_8429794502985646080_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeETEwrBO2HdQMq-DfYabkACwX-NfLmizdHBf418uaLN0Q6OUc5XfX6eA7n2NrNWLahHaAJseArVI5gtsQLeBqZF&_nc_ohc=d-wnmG4riAsAb6c86Tp&_nc_ht=scontent.fkno3-1.fna&oh=00_AfCLWVWpLYN0ebBBcMf5ppApCkuO8MyD8gLyPydPVZ-dZA&oe=663BC728" alt="Wakil Kandidat 2">
+                <p>Jhon Busri (Wakil Kepala Daerah)</p>
+                <button class="vote-button" onclick="vote(2, 'vp')">Vote</button> <!-- Tombol voting -->
+            </div>
+            <div class="candidate" onclick="vote(3, 'vp')">
+                <img src="https://scontent.fkno3-1.fna.fbcdn.net/v/t39.30808-6/270117462_4737236186389674_8169553059682821445_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF-UfuaaoZ9QcYO0MCrQmwuoQFGGxOg8vWhAUYbE6Dy9akMUyJ2Z0s2Cju0WUWonoqAD97JxijPqwS2yFdGw4LP&_nc_ohc=ORbMiopl8kMAb4__rZG&_nc_ht=scontent.fkno3-1.fna&oh=00_AfBu-X-sJQQiutMhEWrfka9S5SNtvRHwohNJEh7-vPQoWg&oe=661A2213" alt="Wakil Kandidat 3">
+                <p>Fadlan Sakha (Wakil Kepala Daerah)</p>
+                <button class="vote-button" onclick="vote(3, 'vp')">Vote</button> <!-- Tombol voting -->
+            </div>
+        </div>
     </div>
 </div>
 
@@ -52,5 +70,121 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="scripts.js"></script>
+<script>
+    let votes = [[0, 0], [0, 0], [0, 0]]; // Menyimpan jumlah suara untuk Kepala Daerah dan Wakil Kepala Daerah
+    let chartHead;
+    let chartVP;
+    let votedIPs = []; // Menyimpan IP yang telah memberikan suara
+
+    function vote(candidate, position) {
+        const userIP = getUserIP(); // Mendapatkan IP pengguna
+        
+        // Memeriksa apakah pengguna telah memberikan suara dari IP yang sama sebelumnya
+        if (votedIPs.includes(userIP)) {
+            alert("Anda sudah memberikan suara untuk Kepala Daerah dan Wakil Kepala Daerah.");
+            return;
+        }
+        
+        // Jika belum memberikan suara, tambahkan IP ke daftar votedIPs
+        votedIPs.push(userIP);
+
+        if (position === 'head') {
+            votes[candidate - 1][0]++; // Menambah jumlah suara untuk Kepala Daerah
+        } else if (position === 'vp') {
+            votes[candidate - 1][1]++; // Menambah jumlah suara untuk Wakil Kepala Daerah
+        }
+        showResults();
+    }
+
+    // Fungsi untuk mendapatkan IP pengguna (hanya contoh, tidak akan berfungsi pada lingkungan produksi sebenarnya)
+    function getUserIP() {
+        // Anda dapat menggunakan layanan pihak ketiga untuk mendapatkan alamat IP pengguna,
+        // seperti menggunakan layanan https://api.ipify.org?format=json, tetapi di sini hanya simulasi.
+        return "127.0.0.1"; // Ini hanya contoh, Anda perlu menggantinya dengan cara yang sesuai.
+    }
+
+    function showResults() {
+        if (chartHead) {
+            chartHead.destroy();
+        }
+        if (chartVP) {
+            chartVP.destroy();
+        }
+        
+        let totalVotesHead = votes.reduce((total, candidateVotes) => total + candidateVotes[0], 0);
+        let totalVotesVP = votes.reduce((total, candidateVotes) => total + candidateVotes[1], 0);
+        
+        let percentagesHead = votes.map(candidateVotes => ((candidateVotes[0] / totalVotesHead) * 100).toFixed(2));
+        let percentagesVP = votes.map(candidateVotes => ((candidateVotes[1] / totalVotesVP) * 100).toFixed(2));
+        
+        let ctxHead = document.getElementById('pollChartHead').getContext('2d');
+        let ctxVP = document.getElementById('pollChartVP').getContext('2d');
+        
+        chartHead = new Chart(ctxHead, {
+            type: 'bar',
+            data: {
+                labels: ['Dafid SEO', 'Rezha Pohan', 'Ari Andika'],
+                datasets: [{
+                    label: 'Kepala Daerah',
+                    data: percentagesHead,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Hasil Polling Kepala Daerah'
+                    }
+                }
+            }
+        });
+        
+        chartVP = new Chart(ctxVP, {
+            type: 'bar',
+            data: {
+                labels: ['Pandi Bachdim', 'Jhon Busri', 'Fadlan Sakha'],
+                datasets: [{
+                    label: 'Wakil Kepala Daerah',
+                    data: percentagesVP,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Hasil Polling Wakil Kepala Daerah'
+                    }
+                }
+            }
+        });
+    }
+
+    // Fungsi untuk menampilkan polling
+    function showPoll(section) {
+        if (section === 'poll') {
+            document.getElementById('pollContent').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+        } else if (section === 'result') {
+            window.location.href = "hasilpolling.html"; // Redirect ke halaman hasil polling
+        }
+    }
+    
+</script>
 </body>
 </html>

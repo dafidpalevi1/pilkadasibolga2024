@@ -8,6 +8,8 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px; /* Tambahkan padding untuk memberi ruang pada sisi konten */
+    box-sizing: border-box; /* Pastikan padding termasuk dalam lebar maksimum */
 }
 
 header {
@@ -19,10 +21,11 @@ header {
 header h1 {
     margin: 0;
     font-size: 24px;
+    text-align: center; /* Tengahkan judul header */
 }
 
 nav {
-    float: right;
+    text-align: center; /* Tengahkan menu navigasi */
 }
 
 nav ul {
@@ -63,13 +66,17 @@ nav ul li a:hover {
 }
 
 .candidate {
-    display: inline-block;
+    width: 30%; /* Atur lebar kandidat menjadi 30% dari container */
     margin: 10px;
     padding: 10px;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    display: inline-block; /* Gunakan inline-block agar kandidat muncul dalam satu baris */
+    vertical-align: top; /* Atur posisi kandidat ke atas */
+    text-align: center; /* Tengahkan teks di dalam kandidat */
+    box-sizing: border-box; /* Pastikan padding termasuk dalam lebar */
 }
 
 .candidate:hover {
@@ -77,12 +84,14 @@ nav ul li a:hover {
 }
 
 .candidate img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    width: 100%;
+    height: auto; /* Mengatur tinggi gambar agar tidak terlalu panjang */
+    border-radius: 50%; /* Membuat gambar menjadi bulat */
     display: block;
     margin: 0 auto 10px;
+    object-fit: cover; /* Menyesuaikan gambar dengan kotak tanpa distorsi */
 }
+
 
 .candidate p {
     margin: 0;
@@ -93,4 +102,17 @@ footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+}
+.vote-button {
+    background-color: #4CAF50; /* Warna latar belakang hijau */
+    color: white; /* Warna teks putih */
+    border: none; /* Hilangkan border */
+    padding: 10px 20px; /* Padding agar tombol tidak terlalu dekat dengan teks */
+    text-align: center; /* Tengahkan teks */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; /* Tambahkan sudut bulat */
 }
